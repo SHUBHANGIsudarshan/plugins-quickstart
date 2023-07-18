@@ -1,0 +1,46 @@
+class Car:
+    def __init__(self, model, brand, body_type, price, fuel_efficiency, safety_rating):
+        self.model = model
+        self.brand = brand
+        self.body_type = body_type
+        self.price = price
+        self.fuel_efficiency = fuel_efficiency
+        self.safety_rating = safety_rating
+
+def get_car_recommendation(user_preferences, car_list):
+    recommended_cars = []
+    
+    for car in car_list:
+        # Check if the car matches user preferences
+        if (user_preferences['budget'] >= car.price and
+            user_preferences['body_type'] == car.body_type and
+            user_preferences['fuel_efficiency'] <= car.fuel_efficiency and
+            user_preferences['safety_rating'] <= car.safety_rating):
+            recommended_cars.append(car)
+    
+    return recommended_cars
+
+# Sample car data
+car_data = [
+    Car('Civic', 'Honda', 'Sedan', 25000, 30, 4.5),
+    Car('Accord', 'Honda', 'Sedan', 35000, 28, 4.8),
+    Car('CR-V', 'Honda', 'SUV', 30000, 26, 4.7),
+    Car('Camry', 'Toyota', 'Sedan', 32000, 29, 4.6),
+    Car('Rav4', 'Toyota', 'SUV', 28000, 27, 4.7)
+]
+
+# Sample user preferences
+user_preferences = {
+    'budget': 30000,
+    'body_type': 'Sedan',
+    'fuel_efficiency': 25,
+    'safety_rating': 4.5
+}
+
+# Get car recommendations
+recommendations = get_car_recommendation(user_preferences, car_data)
+
+# Print recommended cars
+for car in recommendations:
+    print(f"Recommended Car: {car.brand} {car.model}")
+
